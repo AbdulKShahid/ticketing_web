@@ -1,0 +1,6 @@
+<mat-card class="item" *ngIf="ticket" (dblclick)="edit.emit(ticket)">
+  <h2>{{ ticket.title }}</h2>
+  <p>
+    {{ ticket.description }}
+  </p>
+</mat-card>
