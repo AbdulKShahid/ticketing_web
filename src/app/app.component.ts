@@ -3,6 +3,8 @@ import {Ticket} from "./ticket/ticket";
 import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
 import {MatDialog} from "@angular/material/dialog";
 import {TicketDialogComponent, TicketDialogResult} from "./ticket-dialog/ticket-dialog.component";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,28 +13,25 @@ import {TicketDialogComponent, TicketDialogResult} from "./ticket-dialog/ticket-
 })
 export class AppComponent {
   title = 'cpb';
-  todo: Ticket[] = [
-    {
-      title: 'Buy milk',
-      description: 'Go to the store and buy milk'
-    },
-    {
-      title: 'Create a Kanban app',
-      description: 'Using Firebase and Angular create a Kanban app!'
-    }
-  ];
-  inProgress: Ticket[] = [];
-  done: Ticket[] = [];
+  todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
+  inProgress = this.store.collection('inProgress').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
+  done = this.store.collection('done').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
 
-  constructor(private dialog: MatDialog) {}
 
-  drop(event: CdkDragDrop<Ticket[]>): void {
+  constructor(private dialog: MatDialog, private store: AngularFirestore) {}
+
+  drop(event: any): void {
     if (event.previousContainer === event.container) {
       return;
     }
-    if (!event.container.data || !event.previousContainer.data) {
-      return;
-    }
+    const item = event.previousContainer.data[event.previousIndex];
+    this.store.firestore.runTransaction(() => {
+      const promise = Promise.all([
+        this.store.collection(event.previousContainer.id).doc(item.id).delete(),
+        this.store.collection(event.container.id).add(item),
+      ]);
+      return promise;
+    });
     transferArrayItem(
       event.previousContainer.data,
       event.container.data,
@@ -54,7 +53,7 @@ export class AppComponent {
         if (!result) {
           return;
         }
-        this.todo.push(result.ticket);
+        this.store.collection('todo').add(result.ticket);
       });
   }
 
@@ -70,12 +69,10 @@ export class AppComponent {
       if (!result) {
         return;
       }
-      const dataList = this[list];
-      const ticketIndex = dataList.indexOf(ticket);
       if (result.delete) {
-        dataList.splice(ticketIndex, 1);
+        this.store.collection(list).doc(ticket.id).delete();
       } else {
-        dataList[ticketIndex] = ticket;
+        this.store.collection(list).doc(ticket.id).update(ticket);
       }
     });
   }

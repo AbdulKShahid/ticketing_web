@@ -16,12 +16,12 @@
       cdkDropList
       id="todo"
       #todoList="cdkDropList"
-      [cdkDropListData]="todo"
+      [cdkDropListData]="todo | async"
       [cdkDropListConnectedTo]="[doneList, inProgressList]"
       (cdkDropListDropped)="drop($event)"
       class="list">
-      <p class="empty-label" *ngIf="todo.length === 0">Empty list</p>
-      <app-ticket (edit)="editTicket('todo', $event)" *ngFor="let ticket of todo" cdkDrag [ticket]="ticket"></app-ticket>
+      <p class="empty-label" *ngIf="(todo | async)?.length === 0">Empty list</p>
+      <app-ticket (edit)="editTicket('todo', $event)" *ngFor="let ticket of todo | async" cdkDrag [ticket]="ticket"></app-ticket>
     </mat-card>
   </div>
 
@@ -32,12 +32,12 @@
       cdkDropList
       id="inProgress"
       #inProgressList="cdkDropList"
-      [cdkDropListData]="inProgress"
+      [cdkDropListData]="inProgress | async"
       [cdkDropListConnectedTo]="[todoList, doneList]"
       (cdkDropListDropped)="drop($event)"
       class="list">
-      <p class="empty-label" *ngIf="inProgress.length === 0">Empty list</p>
-      <app-ticket (edit)="editTicket('inProgress', $event)" *ngFor="let ticket of inProgress" cdkDrag [ticket]="ticket"></app-ticket>
+      <p class="empty-label" *ngIf="(inProgress | async)?.length === 0">Empty list</p>
+      <app-ticket (edit)="editTicket('inProgress', $event)" *ngFor="let ticket of inProgress | async" cdkDrag [ticket]="ticket"></app-ticket>
     </mat-card>
   </div>
 
@@ -48,12 +48,13 @@
       cdkDropList
       id="done"
       #doneList="cdkDropList"
-      [cdkDropListData]="done"
+      [cdkDropListData]="done | async"
       [cdkDropListConnectedTo]="[todoList, inProgressList]"
       (cdkDropListDropped)="drop($event)"
       class="list">
-      <p class="empty-label" *ngIf="done.length === 0">Empty list</p>
-      <app-ticket (edit)="editTicket('done', $event)" *ngFor="let ticket of done" cdkDrag [ticket]="ticket"></app-ticket>
+      <p class="empty-label" *ngIf="(done | async)?.length === 0">Empty list</p>
+      <app-ticket (edit)="editTicket('done', $event)" *ngFor="let ticket of done | async" cdkDrag [ticket]="ticket"></app-ticket>
     </mat-card>
   </div>
+</div>
 </div>
