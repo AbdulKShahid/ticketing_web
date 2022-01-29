@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "8200f6dc-fa90-44ca-91f0-3a730615d68f"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cpb": {
+    "ticketing-fe06a": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cpb",
+            "outputPath": "dist/ticketing-fe06a",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -37,8 +40,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cpb:build:production"
+              "browserTarget": "ticketing-fe06a:build:production"
             },
             "development": {
-              "browserTarget": "cpb:build:development"
+              "browserTarget": "ticketing-fe06a:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cpb:build"
+            "browserTarget": "ticketing-fe06a:build"
           }
         },
         "test": {
@@ -106,7 +109,7 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "cpb:build:production",
+            "browserTarget": "ticketing-fe06a:build:production",
             "firebaseProject": "ticketing-fe06a",
             "firebaseHostingSite": "ticketing-fe06a"
           }
@@ -114,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "cpb"
+  "defaultProject": "ticketing-fe06a"
 }
