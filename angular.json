@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "cpb:build:production",
+            "firebaseProject": "ticketing-fe06a",
+            "firebaseHostingSite": "ticketing-fe06a"
+          }
         }
       }
     }

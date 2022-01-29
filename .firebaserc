@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ticketing-fe06a": {
+      "hosting": {
+        "cpb": [
+          "ticketing-fe06a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ticketing-fe06a"
+  }
+}
