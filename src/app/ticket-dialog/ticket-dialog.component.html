@@ -8,6 +8,17 @@
   <textarea matInput [(ngModel)]="data.ticket.description"></textarea>
 </mat-form-field>
 
+<!--<div mat-dialog-actions>
+  <button
+    *ngIf="data.enableDelete"
+    mat-fab
+    color="primary"
+    aria-label="Delete"
+    [mat-dialog-close]="{ ticket: data.ticket, delete: true }">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>-->
+
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="{ ticket: data.ticket }">OK</button>
   <button mat-button (click)="cancel()">Cancel</button>

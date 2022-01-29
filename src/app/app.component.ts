@@ -26,8 +26,6 @@ export class AppComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  editTicket(list: string, ticket: Ticket): void {}
-
   drop(event: CdkDragDrop<Ticket[]>): void {
     if (event.previousContainer === event.container) {
       return;
@@ -60,4 +58,25 @@ export class AppComponent {
       });
   }
 
+  editTicket(list: 'done' | 'todo' | 'inProgress', ticket: Ticket): void {
+    const dialogRef = this.dialog.open(TicketDialogComponent, {
+      width: '270px',
+      data: {
+        ticket: ticket,
+        enableDelete: true,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: TicketDialogResult|undefined) => {
+      if (!result) {
+        return;
+      }
+      const dataList = this[list];
+      const ticketIndex = dataList.indexOf(ticket);
+      if (result.delete) {
+        dataList.splice(ticketIndex, 1);
+      } else {
+        dataList[ticketIndex] = ticket;
+      }
+    });
+  }
 }
