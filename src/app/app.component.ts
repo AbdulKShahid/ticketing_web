@@ -3,9 +3,16 @@ import {Ticket} from "./ticket/ticket";
 import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
 import {MatDialog} from "@angular/material/dialog";
 import {TicketDialogComponent, TicketDialogResult} from "./ticket-dialog/ticket-dialog.component";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {Observable} from "rxjs";
+import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
+import {BehaviorSubject, Observable} from "rxjs";
 
+const getObservable = (collection: AngularFirestoreCollection<Ticket>) => {
+  const subject = new BehaviorSubject<Ticket[]>([]);
+  collection.valueChanges({ idField: 'id' }).subscribe((val: Ticket[]) => {
+    subject.next(val);
+  });
+  return subject;
+};
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,9 +20,9 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
   title = 'cpb';
-  todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
-  inProgress = this.store.collection('inProgress').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
-  done = this.store.collection('done').valueChanges({ idField: 'id' }) as Observable<Ticket[]>;
+  todo = getObservable(this.store.collection('todo')) as Observable<Ticket[]>;
+  inProgress = getObservable(this.store.collection('inProgress')) as Observable<Ticket[]>;
+  done = getObservable(this.store.collection('done')) as Observable<Ticket[]>;
 
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) {}
