@@ -2,3 +2,9 @@
   padding-left: 12px;
   padding-right: 12px;
 }
+
+.form-field-container {
+  height: 40px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

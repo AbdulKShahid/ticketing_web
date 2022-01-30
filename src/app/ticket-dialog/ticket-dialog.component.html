@@ -1,11 +1,11 @@
 <div fxLayout="row">
   <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row wrap">
-    <h2 fxFlex="100" class="center">{{data?.ticket?.ticketNumber ? 'Intervention -' + data?.ticket?.ticketNumber : 'Nouvelle intervention'}}</h2>
+    <h2 fxFlex="100" class="center">{{data?.ticket?.id ? 'Intervention -' + data?.ticket?.ticketNumber : 'Nouvelle intervention'}}</h2>
 
     <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
       <h3 fxFlex="100">Intervention Info</h3>
       <ng-container *ngFor="let field of fields">
-        <div *ngIf="field.type === 'string' && field.kind === 'info'" fxFlex="50">
+        <div *ngIf="field.type === 'string' && field.kind === 'info'" fxFlex="50" class="form-field-container">
           <mat-form-field fxFlex="100" class="form-field-class">
             <mat-label>
               {{field.name}}
@@ -13,19 +13,35 @@
             <input matInput [formControlName]="field.key">
           </mat-form-field>
         </div>
+        <div *ngIf="field.type === 'checkbox' && field.kind === 'info' && fieldsForm?.controls[field.key]"
+             class="form-field-container"  fxFlex="50">
+          <div fxFlex="100" class="form-field-class">
+            <mat-slide-toggle [formControlName]="field.key" name="{{field.name}}"
+              > {{field.name}}
+            </mat-slide-toggle>
+          </div>
+        </div>
       </ng-container>
     </div>
 
     <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
       <h3 fxFlex="100">Travail effectué</h3>
       <ng-container *ngFor="let field of fields">
-        <div *ngIf="field.type === 'string' && field.kind === 'work'" fxFlex="50">
+        <div *ngIf="field.type === 'string' && field.kind === 'work'" fxFlex="50" class="form-field-container">
           <mat-form-field fxFlex="100" class="form-field-class">
             <mat-label>
               {{field.name}}
             </mat-label>
             <input matInput [formControlName]="field.key">
           </mat-form-field>
+        </div>
+        <div *ngIf="field.type === 'checkbox' && field.kind === 'work' && fieldsForm?.controls[field.key]"
+             class="form-field-container" fxFlex="50">
+          <div fxFlex="100" class="form-field-class">
+            <mat-slide-toggle [formControlName]="field.key" name="{{field.name}}"
+            > {{field.name}}
+            </mat-slide-toggle>
+          </div>
         </div>
       </ng-container>
     </div>

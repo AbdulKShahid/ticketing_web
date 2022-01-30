@@ -5,12 +5,12 @@
 
 <div class="content-wrapper">
   <button (click)="newTicket()" mat-button>
-    <mat-icon>add</mat-icon> Add Ticket
+    <mat-icon>add</mat-icon> Nouvelle Intervention
   </button>
 
 <div class="container-wrapper">
   <div class="container">
-    <h2>Backlog</h2>
+    <h2>Créé</h2>
 
     <mat-card
       cdkDropList
@@ -26,7 +26,7 @@
   </div>
 
   <div class="container">
-    <h2>In progress</h2>
+    <h2>En cours</h2>
 
     <mat-card
       cdkDropList
@@ -42,7 +42,7 @@
   </div>
 
   <div class="container">
-    <h2>Done</h2>
+    <h2>Terminé</h2>
 
     <mat-card
       cdkDropList
@@ -58,18 +58,15 @@
   </div>
 
   <div class="container">
-    <h2>Tickets</h2>
+    <h2>Tous</h2>
 
     <mat-card
       cdkDropList
       id="tickets"
       #doneList="cdkDropList"
-      [cdkDropListData]="tickets | async"
-      [cdkDropListConnectedTo]="[todoList, inProgressList]"
-      (cdkDropListDropped)="drop($event)"
       class="list">
       <p class="empty-label" *ngIf="(tickets | async)?.length === 0">Empty list</p>
-      <app-ticket (edit)="editTicket('tickets', $event)" *ngFor="let ticket of tickets | async" cdkDrag [ticket]="ticket"></app-ticket>
+      <app-ticket (edit)="editTicket('tickets', $event)" *ngFor="let ticket of tickets | async" [ticket]="ticket"></app-ticket>
     </mat-card>
   </div>
 </div>

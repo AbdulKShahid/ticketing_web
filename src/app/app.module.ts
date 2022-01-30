@@ -21,6 +21,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

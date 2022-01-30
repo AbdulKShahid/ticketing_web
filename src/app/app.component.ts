@@ -51,6 +51,7 @@ export class AppComponent {
   newTicket(): void {
     const dialogRef = this.dialog.open(TicketDialogComponent, {
       width: '80vw',
+      height: '80vh',
       data: {
         ticket: {},
       },
@@ -68,6 +69,7 @@ export class AppComponent {
   editTicket(list: 'done' | 'todo' | 'inProgress' | 'tickets' , ticket: Ticket): void {
     const dialogRef = this.dialog.open(TicketDialogComponent, {
       width: '80vw',
+      height: '80vh',
       data: {
         ticket: ticket,
         enableDelete: true,
