@@ -1,5 +1,5 @@
 <div fxLayout="row">
-  <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row">
+  <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row wrap">
     <ng-container *ngFor="let field of fields" fxFlex="50">
       <div *ngIf="field.type === 'string'" fxFlex="50">
         <mat-form-field>
