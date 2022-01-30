@@ -3,8 +3,8 @@
   <span>CPB Astra</span>
 </mat-toolbar>
 
-<div class="content-wrapper">
-  <div fxLayout="row">
+<div class="content-wrapper" class="overflow-scroll" fxLayout="row wrap">
+  <div fxLayout="row" fxFlex="100">
     <button (click)="newTicket()" mat-button>
       <mat-icon>add</mat-icon> Nouvelle Intervention
     </button>
@@ -18,8 +18,8 @@
 
 
 
-  <div *ngIf="!listView" class="container-wrapper">
-    <div class="container">
+  <div *ngIf="!listView" class="container-wrapper overflow-scroll" fxFlex="100">
+    <div class="container" fxFlex="30">
       <h2>Créé</h2>
 
       <mat-card
@@ -35,7 +35,7 @@
       </mat-card>
     </div>
 
-    <div class="container">
+    <div class="container" fxFlex="30">
       <h2>En cours</h2>
 
       <mat-card
@@ -51,7 +51,7 @@
       </mat-card>
     </div>
 
-    <div class="container">
+    <div class="container" fxFlex="30">
       <h2>Terminé</h2>
 
       <mat-card
@@ -70,7 +70,7 @@
 
   </div>
 
-  <div *ngIf="listView" fxLayout="row wrap">
+  <div *ngIf="listView" fxLayout="row wrap" fxFlex="100">
     <div class="container px-8" fxLayout="row wrap" fxFlex="100">
       <h2 fxFlex="100">Tous</h2>
 
