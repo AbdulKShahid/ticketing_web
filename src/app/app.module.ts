@@ -11,7 +11,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {MatButtonModule} from "@angular/material/button";
 import { TicketDialogComponent } from './ticket-dialog/ticket-dialog.component';
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -42,7 +42,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

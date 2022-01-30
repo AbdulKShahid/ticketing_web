@@ -23,6 +23,7 @@ export class AppComponent {
   todo = getObservable(this.store.collection('todo')) as Observable<Ticket[]>;
   inProgress = getObservable(this.store.collection('inProgress')) as Observable<Ticket[]>;
   done = getObservable(this.store.collection('done')) as Observable<Ticket[]>;
+  tickets = getObservable(this.store.collection('tickets')) as Observable<Ticket[]>;
 
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) {}
@@ -64,7 +65,7 @@ export class AppComponent {
       });
   }
 
-  editTicket(list: 'done' | 'todo' | 'inProgress', ticket: Ticket): void {
+  editTicket(list: 'done' | 'todo' | 'inProgress' | 'tickets' , ticket: Ticket): void {
     const dialogRef = this.dialog.open(TicketDialogComponent, {
       width: '270px',
       data: {

@@ -1,5 +1,6 @@
 export interface Ticket {
   id?: string;
-  title: string;
-  description: string;
+  ticketNumber?: string;
+  ville: string;
+  codePostal: string;
 }

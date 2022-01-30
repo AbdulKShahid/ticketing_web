@@ -56,5 +56,21 @@
       <app-ticket (edit)="editTicket('done', $event)" *ngFor="let ticket of done | async" cdkDrag [ticket]="ticket"></app-ticket>
     </mat-card>
   </div>
+
+  <div class="container">
+    <h2>Done</h2>
+
+    <mat-card
+      cdkDropList
+      id="tickets"
+      #doneList="cdkDropList"
+      [cdkDropListData]="tickets | async"
+      [cdkDropListConnectedTo]="[todoList, inProgressList]"
+      (cdkDropListDropped)="drop($event)"
+      class="list">
+      <p class="empty-label" *ngIf="(tickets | async)?.length === 0">Empty list</p>
+      <app-ticket (edit)="editTicket('tickets', $event)" *ngFor="let ticket of tickets | async" cdkDrag [ticket]="ticket"></app-ticket>
+    </mat-card>
+  </div>
 </div>
 </div>
