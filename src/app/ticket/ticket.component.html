@@ -3,4 +3,5 @@
   <span>
     {{ ticket.ville }} - {{ ticket.codePostal }}
   </span>
+  <span>{{getDate(ticket?.ticketDate) | date: 'dd/MM/yyyy'}}</span>
 </mat-card>

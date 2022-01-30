@@ -24,7 +24,7 @@ export class AppComponent {
   inProgress = getObservable(this.store.collection('inProgress')) as Observable<Ticket[]>;
   done = getObservable(this.store.collection('done')) as Observable<Ticket[]>;
   tickets = getObservable(this.store.collection('tickets')) as Observable<Ticket[]>;
-
+  listView = true;
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) {}
 
@@ -62,7 +62,7 @@ export class AppComponent {
         if (!result) {
           return;
         }
-        this.store.collection('todo').add(result.ticket);
+        this.store.collection('tickets').add(result.ticket);
       });
   }
 
