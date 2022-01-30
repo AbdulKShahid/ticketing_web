@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Ticket} from "../ticket/ticket";
 import {FormService} from "../services/form.service";
@@ -28,11 +28,13 @@ export class TicketDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: TicketDialogData,
     private formService: FormService,
     private fb: FormBuilder,
+    private cdRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.getFields();
     this.buildForm(this.data?.ticket);
+    this.cdRef.markForCheck();
   }
 
   cancel(): void {
@@ -41,15 +43,13 @@ export class TicketDialogComponent implements OnInit {
   }
 
   getFields() {
-    this.fields = this.formService.getInfoFields();
-    console.log(this.fields);
+    this.fields = this.formService.getFields();
+    this.fields = [...this.fields];
   }
 
   buildForm(ticket: any) {
-    console.log(ticket);
     let controls: any = {};
-    this.fields.forEach((field: any) => {
-      console.log(field);
+    this.fields?.forEach((field: any) => {
       if (field.type === 'checkbox') {
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? ticket[field.key] : false];
       } else {

@@ -1,25 +1,45 @@
 <div fxLayout="row">
   <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row wrap">
-    <ng-container *ngFor="let field of fields" fxFlex="50">
-      <div *ngIf="field.type === 'string'" fxFlex="50">
-        <mat-form-field>
-          <mat-label>
-            {{field.name}}
-          </mat-label>
-          <input matInput [formControlName]="field.key">
-        </mat-form-field>
-      </div>
-    </ng-container>
+    <h2 fxFlex="100" class="center">{{data?.ticket?.ticketNumber ? 'Intervention -' + data?.ticket?.ticketNumber : 'Nouvelle intervention'}}</h2>
+
+    <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
+      <h3 fxFlex="100">Intervention Info</h3>
+      <ng-container *ngFor="let field of fields">
+        <div *ngIf="field.type === 'string' && field.kind === 'info'" fxFlex="50">
+          <mat-form-field fxFlex="100" class="form-field-class">
+            <mat-label>
+              {{field.name}}
+            </mat-label>
+            <input matInput [formControlName]="field.key">
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </div>
+
+    <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
+      <h3 fxFlex="100">Travail effectué</h3>
+      <ng-container *ngFor="let field of fields">
+        <div *ngIf="field.type === 'string' && field.kind === 'work'" fxFlex="50">
+          <mat-form-field fxFlex="100" class="form-field-class">
+            <mat-label>
+              {{field.name}}
+            </mat-label>
+            <input matInput [formControlName]="field.key">
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </div>
+
   </form>
 </div>
 
 <div mat-dialog-actions>
   <button
-    *ngIf="data.enableDelete"
+    *ngIf="data?.enableDelete"
     mat-fab
     color="primary"
     aria-label="Delete"
-    [mat-dialog-close]="{ ticket: data.ticket, delete: true }">
+    [mat-dialog-close]="{ ticket: data?.ticket, delete: true }">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
