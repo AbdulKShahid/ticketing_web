@@ -22,6 +22,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from "@angular-material-components/datetime-picker";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +54,10 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     AngularFirestoreModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatDatepickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

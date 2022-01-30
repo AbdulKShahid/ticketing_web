@@ -33,7 +33,7 @@ export class FormService {
       },{
         name: 'Date d\'intervention',
         key: 'ticketDate',
-        type: 'string',
+        type: 'dateTime',
         kind: 'info'
       },
       {
@@ -60,17 +60,17 @@ export class FormService {
       },{
         name: 'Heure d\'appel',
         key: 'callTime',
-        type: 'string',
+        type: 'dateTime',
         kind: 'info'
       },{
         name: 'Heure d\'arrivé',
         key: 'arrivalTime',
-        type: 'string',
+        type: 'datetime',
         kind: 'info'
       },{
         name: 'Heure de depart',
         key: 'departureTime',
-        type: 'string',
+        type: 'dateTime',
         kind: 'info'
       },{
         name: 'Batiment',

@@ -21,6 +21,18 @@
             </mat-slide-toggle>
           </div>
         </div>
+        <div *ngIf="field.type === 'dateTime' && field.kind === 'info'" fxFlex="50" class="form-field-container">
+
+        <mat-form-field fxFlex="100" class="form-field-class">
+          <input matInput [ngxMatDatetimePicker]="picker" placeholder="{{field.name}}" [formControlName]="field.key"
+                 >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker [showSpinners]="false" [showSeconds]="false"
+                                   [stepHour]="1" [stepMinute]="1"
+                                   [touchUi]="true" [hideTime]="false">
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+        </div>
       </ng-container>
     </div>
 
