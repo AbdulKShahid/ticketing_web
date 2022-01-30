@@ -45,3 +45,8 @@ app-new-task {
 .cdk-drag-placeholder {
   opacity: 0;
 }
+
+.logo-style {
+  height: 40px;
+  width: 40px;
+}

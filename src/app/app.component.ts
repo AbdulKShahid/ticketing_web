@@ -50,7 +50,7 @@ export class AppComponent {
 
   newTicket(): void {
     const dialogRef = this.dialog.open(TicketDialogComponent, {
-      width: '270px',
+      width: '500px',
       data: {
         ticket: {},
       },

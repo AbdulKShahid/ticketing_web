@@ -15,13 +15,43 @@ export class FormService {
   getInfoFields(): Field[] {
     const infoFieldsList: Field[] = [
       {
-        name: 'Technician name',
+        name: 'Nom du technician',
         key: 'technicianName',
         type: 'string'
       },
       {
-        name: 'Ticket number',
+        name: 'N. d\'intervention',
         key: 'ticketNumber',
+        type: 'string'
+      },
+      {
+        name: 'Adress',
+        key: 'address',
+        type: 'string'
+      },
+      {
+        name: 'Ville',
+        key: 'ville',
+        type: 'string'
+      },{
+        name: 'Code postal',
+        key: 'codePostal',
+        type: 'string'
+      },{
+        name: 'Batiment',
+        key: 'building',
+        type: 'string'
+      },{
+        name: 'Etage',
+        key: 'floorNo',
+        type: 'string'
+      },{
+        name: 'Escalier',
+        key: 'escalier',
+        type: 'string'
+      },{
+        name: 'Apartment',
+        key: 'apartment',
         type: 'string'
       },
 

@@ -1,7 +1,7 @@
-<div fxFlex>
-  <form [formGroup]="fieldsForm">
-    <ng-container *ngFor="let field of fields">
-      <div *ngIf="field.type === 'string'">
+<div fxLayout="row">
+  <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row">
+    <ng-container *ngFor="let field of fields" fxFlex="50">
+      <div *ngIf="field.type === 'string'" fxFlex="50">
         <mat-form-field>
           <mat-label>
             {{field.name}}
