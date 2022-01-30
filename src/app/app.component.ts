@@ -82,7 +82,7 @@ export class AppComponent {
       if (result.delete) {
         this.store.collection(list).doc(ticket.id).delete();
       } else {
-        this.store.collection(list).doc(ticket.id).update(ticket);
+        this.store.collection(list).doc(ticket.id).update(result.ticket);
       }
     });
   }

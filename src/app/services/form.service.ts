@@ -57,17 +57,20 @@ export class FormService {
         key: 'status',
         type: 'string',
         kind: 'info'
-      },{
+      },
+      {
         name: 'Heure d\'appel',
         key: 'callTime',
         type: 'dateTime',
         kind: 'info'
-      },{
+      },
+      {
         name: 'Heure d\'arrivé',
         key: 'arrivalTime',
-        type: 'datetime',
+        type: 'dateTime',
         kind: 'info'
-      },{
+      },
+      {
         name: 'Heure de depart',
         key: 'departureTime',
         type: 'dateTime',

@@ -53,7 +53,7 @@ export class TicketDialogComponent implements OnInit {
       if (field.type === 'checkbox') {
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? ticket[field.key] : false];
       } else if (field.type === 'dateTime'){
-        controls[field.key] = [ticket?.hasOwnProperty(field.key) ? (ticket[field.key]).toDate() : new Date()];
+        controls[field.key] = [ticket?.hasOwnProperty(field.key) ? new Date(ticket[field.key]) : new Date()];
       } else {
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? ticket[field.key] : ''];
       }
