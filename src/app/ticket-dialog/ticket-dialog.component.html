@@ -1,4 +1,4 @@
-<div fxLayout="row">
+<div fxLayout="row" id="divId" #divId>
   <form [formGroup]="fieldsForm" fxFlex="100" fxLayout="row wrap">
     <h2 fxFlex="100" class="center">{{data?.ticket?.id ? 'Intervention -' + data?.ticket?.ticketNumber : 'Nouvelle intervention'}}</h2>
 
@@ -62,6 +62,10 @@
 </div>
 
 <div mat-dialog-actions>
+  <button mat-button (click)="submit()">OK</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <span fxFlex></span>
+  <button *ngIf="data?.ticket?.id" mat-button (click)="exportAsPDF('MyDIv')">Exporter en pdf</button>
   <button
     *ngIf="data?.enableDelete"
     mat-fab
@@ -70,9 +74,5 @@
     [mat-dialog-close]="{ ticket: data?.ticket, delete: true }">
     <mat-icon>delete</mat-icon>
   </button>
-</div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="submit()">OK</button>
-  <button mat-button (click)="cancel()">Cancel</button>
 </div>

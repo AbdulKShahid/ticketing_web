@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Ticket} from "../ticket/ticket";
 import {FormService} from "../services/form.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 export interface TicketDialogData {
   ticket: Partial<Ticket>;
@@ -69,4 +71,18 @@ export class TicketDialogComponent implements OnInit {
     });*/
     this.dialogRef.close({ ticket: res });
   }
+
+  exportAsPDF(divId: any)
+  {
+    let data:any = document.getElementById('divId');
+    html2canvas(data).then(canvas => {
+      const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
+      let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+       //let pdf = new jspdf('p', 'cm', 'a4'); //Generates PDF in portrait mode
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, 27.7, 20.0);
+      const fileName = this.data?.ticket?.ticketNumber + '.pdf';
+      pdf.save(fileName);
+    });
+  }
+
 }
