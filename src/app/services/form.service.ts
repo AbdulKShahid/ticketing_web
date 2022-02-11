@@ -5,6 +5,7 @@ interface Field {
   key: string,
   type: string,
   kind?:string,
+  options?: any[],
 }
 @Injectable({
   providedIn: 'root'
@@ -55,8 +56,20 @@ export class FormService {
       },{
         name: 'Statut',
         key: 'status',
-        type: 'string',
-        kind: 'info'
+        type: 'dropdown',
+        kind: 'info',
+        options: [
+          {
+            name: 'Créé',
+            key: 'Créé'
+          },{
+            name: 'En cours',
+            key: 'En cours'
+          },{
+            name: 'Terminé',
+            key: 'Terminé'
+          },
+        ]
       },
       {
         name: 'Heure d\'appel',

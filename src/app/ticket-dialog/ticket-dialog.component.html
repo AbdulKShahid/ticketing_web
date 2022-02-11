@@ -13,6 +13,19 @@
             <input matInput [formControlName]="field.key">
           </mat-form-field>
         </div>
+        <div *ngIf="field.type === 'dropdown' && field.kind === 'info'" fxFlex="50" class="form-field-container">
+          <mat-form-field fxFlex="100" class="form-field-class">
+            <mat-label>
+              {{field.name}}
+            </mat-label>
+            <mat-select [formControlName]="field.key">
+              <mat-option *ngFor="let option of field.options" [value]="option.key">
+                {{option.name}}
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
         <div *ngIf="field.type === 'checkbox' && field.kind === 'info' && fieldsForm?.controls[field.key]"
              class="form-field-container"  fxFlex="50">
           <div fxFlex="100" class="form-field-class">

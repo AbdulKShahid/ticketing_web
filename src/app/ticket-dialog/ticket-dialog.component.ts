@@ -56,6 +56,8 @@ export class TicketDialogComponent implements OnInit {
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? ticket[field.key] : false];
       } else if (field.type === 'dateTime'){
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? new Date(ticket[field.key]) : new Date()];
+      }  else if (field.type === 'dropdown'){
+        controls[field.key] = [ticket?.hasOwnProperty(field.key) && ticket[field.key] ? ticket[field.key] : field.options[0].key];
       } else {
         controls[field.key] = [ticket?.hasOwnProperty(field.key) ? ticket[field.key] : ''];
       }
