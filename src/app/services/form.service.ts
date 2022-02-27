@@ -6,6 +6,7 @@ interface Field {
   type: string,
   kind?:string,
   options?: any[],
+  fxFlex?: number
 }
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class FormService {
   getInfoFields(): Field[] {
     let infoFieldsList: Field[] = [
       {
-        name: 'Nom du technician',
+        name: 'Nom du technicien',
         key: 'technicianName',
         type: 'string',
         kind: 'info'
@@ -38,7 +39,7 @@ export class FormService {
         kind: 'info'
       },
       {
-        name: 'Adress',
+        name: 'Adresse',
         key: 'address',
         type: 'string',
         kind: 'info'
@@ -76,18 +77,6 @@ export class FormService {
         key: 'callTime',
         type: 'dateTime',
         kind: 'info'
-      },
-      {
-        name: 'Heure d\'arrivé',
-        key: 'arrivalTime',
-        type: 'dateTime',
-        kind: 'info'
-      },
-      {
-        name: 'Heure de depart',
-        key: 'departureTime',
-        type: 'dateTime',
-        kind: 'info'
       },{
         name: 'Batiment',
         key: 'building',
@@ -109,7 +98,7 @@ export class FormService {
         type: 'string',
         kind: 'info'
       },{
-        name: 'Nom du locator',
+        name: 'Nom du locateur',
         key: 'locatorName',
         type: 'string',
         kind: 'info'
@@ -158,27 +147,23 @@ export class FormService {
   getWorkFields(): Field[] {
     let workFieldsList: Field[] = [
       {
-        name: 'Un technician',
+        name: 'Un technicien',
         key: 'isOneTechnician',
         type: 'checkbox',
         kind: 'work'
       },
       {
-        name: 'Deux technicians',
+        name: 'Deux techniciens',
         key: 'isTwoTechnician',
         type: 'checkbox',
         kind: 'work'
-      },{
-        name: 'Recherche de fuite',
-        key: 'waterLeakSearch',
-        type: 'checkbox',
-        kind: 'work'
       },
+
       {
-        name: 'Recherche de fuite commentaire',
-        key: 'waterLeakSearchCmt',
-        type: 'string',
-        kind: 'work'
+        name: 'Heure d\'arrivé',
+        key: 'arrivalTime',
+        type: 'dateTime',
+        kind: 'info'
       },
       {
         name: 'Appartment et étage',
@@ -186,42 +171,73 @@ export class FormService {
         type: 'string',
         kind: 'work'
       },
+
+      // {
+      //   name: 'Recherche de fuite',
+      //   key: 'waterLeakSearch',
+      //   type: 'checkbox',
+      //   kind: 'work'
+      // },
       {
-        name: 'Recherche de panne',
-        key: 'panneSearch',
-        type: 'checkbox',
-        kind: 'work'
+        name: 'Recherche de fuite commentaire',
+        key: 'waterLeakSearchCmt',
+        type: 'textArea',
+        kind: 'work',
+        fxFlex: 100
       },
+
+      // {
+      //   name: 'Recherche de panne',
+      //   key: 'panneSearch',
+      //   type: 'checkbox',
+      //   kind: 'work'
+      // },
       {
         name: 'Recherche de panne commentaire',
         key: 'panneSearchCmt',
         type: 'string',
-        kind: 'work'
+        kind: 'work',
+        fxFlex: 100
       },
 
+      // {
+      //   name: 'Verification d\'equipments',
+      //   key: 'equipmentVerification',
+      //   type: 'checkbox',
+      //   kind: 'work'
+      // },
       {
-        name: 'Verification d\'equipments',
-        key: 'equipmentVerification',
-        type: 'checkbox',
-        kind: 'work'
+        name: 'Verification d\'equipments commentaire',
+        key: 'equipmentVerificationCmt',
+        type: 'string',
+        kind: 'work',
+        fxFlex: 100
       },
+      // {
+      //   name: 'Mise en securité',
+      //   key: 'putInSecurity',
+      //   type: 'checkbox',
+      //   kind: 'work'
+      // },
       {
-        name: 'Mise en securité',
-        key: 'putInSecurity',
-        type: 'checkbox',
-        kind: 'work'
+        name: 'Mise en securité commentaire',
+        key: 'putInSecurityCmt',
+        type: 'string',
+        kind: 'work',
+        fxFlex: 100
       },
-      {
-        name: 'Reparation',
-        key: 'reparation',
-        type: 'checkbox',
-        kind: 'work'
-      },
+      // {
+      //   name: 'Reparation',
+      //   key: 'reparation',
+      //   type: 'checkbox',
+      //   kind: 'work'
+      // },
       {
         name: 'Reparation commentaire',
         key: 'reparationCmt',
         type: 'string',
-        kind: 'work'
+        kind: 'work',
+        fxFlex: 100
       },
       {
         name: 'Ouverture du porte',
@@ -285,7 +301,7 @@ export class FormService {
       },
 
       {
-        name: 'Observation',
+        name: 'Autre commentaire',
         key: 'observation',
         type: 'string',
         kind: 'work'
@@ -320,7 +336,12 @@ export class FormService {
         type: 'string',
         kind: 'work'
       },
-
+      {
+        name: 'Heure de depart',
+        key: 'departureTime',
+        type: 'dateTime',
+        kind: 'info'
+      },
 
 
     ];

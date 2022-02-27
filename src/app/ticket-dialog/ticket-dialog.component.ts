@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Ticket} from "../ticket/ticket";
 import {FormService} from "../services/form.service";
@@ -21,7 +21,7 @@ export interface TicketDialogResult {
   templateUrl: './ticket-dialog.component.html',
   styleUrls: ['./ticket-dialog.component.css']
 })
-export class TicketDialogComponent implements OnInit {
+export class TicketDialogComponent implements OnInit, AfterViewInit {
   fieldsForm: FormGroup;
   private backupTicket: Partial<Ticket> = { ...this.data.ticket };
   fields: any = [];
@@ -36,7 +36,24 @@ export class TicketDialogComponent implements OnInit {
   ngOnInit() {
     this.getFields();
     this.buildForm(this.data?.ticket);
+
     this.cdRef.markForCheck();
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  valueChangeCheck() {
+    this.fields.forEach((field:any, index: number) => {
+      let elementId = 'editor' + index;
+      let value = < HTMLImageElement > document.getElementById(elementId);
+      if(!value) {
+        return;
+      }
+      this.fieldsForm.value[field.key] = value.textContent;
+
+    })
   }
 
   cancel(): void {
@@ -66,7 +83,30 @@ export class TicketDialogComponent implements OnInit {
     this.fieldsForm = this.fb.group(controls);
   }
 
+  setChangeListener (div: any, listener:any ) {
+
+    div.addEventListener("blur", listener);
+    div.addEventListener("keyup", listener);
+    div.addEventListener("paste", listener);
+    div.addEventListener("copy", listener);
+    div.addEventListener("cut", listener);
+    div.addEventListener("delete", listener);
+    div.addEventListener("mouseup", listener);
+
+  }
+
+
   submit() {
+
+    this.valueChangeCheck();
+
+
+
+
+    console.log(document.getElementById("editor"));
+
+
+
     let res = JSON.parse(JSON.stringify(this.fieldsForm.value));
 /*    this.fields.forEach(field => {
       res[field.key] = '';

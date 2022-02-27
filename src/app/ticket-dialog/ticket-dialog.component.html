@@ -5,7 +5,7 @@
     <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
       <h3 fxFlex="100">Intervention Info</h3>
       <ng-container *ngFor="let field of fields; let i = index">
-        <div *ngIf="field.type === 'string' && field.kind === 'info'" fxFlex="50" class="form-field-container">
+        <div *ngIf="field.type === 'string' && field.kind === 'info'" [fxFlex]="field.fxFlex ? field.fxFlex : 50" class="form-field-container">
           <mat-form-field fxFlex="100" class="form-field-class">
             <mat-label>
               {{field.name}}
@@ -13,7 +13,7 @@
             <input matInput [formControlName]="field.key">
           </mat-form-field>
         </div>
-        <div *ngIf="field.type === 'dropdown' && field.kind === 'info'" fxFlex="50" class="form-field-container">
+        <div *ngIf="field.type === 'dropdown' && field.kind === 'info'" [fxFlex]="field.fxFlex ? field.fxFlex : 50" class="form-field-container">
           <mat-form-field fxFlex="100" class="form-field-class">
             <mat-label>
               {{field.name}}
@@ -27,7 +27,7 @@
           </mat-form-field>
         </div>
         <div *ngIf="field.type === 'checkbox' && field.kind === 'info' && fieldsForm?.controls[field.key]"
-             class="form-field-container"  fxFlex="50">
+             class="form-field-container"  [fxFlex]="field.fxFlex ? field.fxFlex : 50">
           <div fxFlex="100" class="form-field-class">
             <mat-slide-toggle [formControlName]="field.key" name="{{field.name}}"
               > {{field.name}}
@@ -50,9 +50,9 @@
     </div>
 
     <div fxFlex="50" fxLayout="row wrap" class="overflow-scroll">
-      <h3 fxFlex="100">Travail effectué</h3>
-      <ng-container *ngFor="let field of fields">
-        <div *ngIf="field.type === 'string' && field.kind === 'work'" fxFlex="50" class="form-field-container">
+      <h3 fxFlex="100">Travaux effectué</h3>
+      <ng-container *ngFor="let field of fields; let i = index;">
+        <div *ngIf="field.type === 'string' && field.kind === 'work'" [fxFlex]="field.fxFlex ? field.fxFlex : 50" class="form-field-container">
           <mat-form-field fxFlex="100" class="form-field-class">
             <mat-label>
               {{field.name}}
@@ -60,14 +60,37 @@
             <input matInput [formControlName]="field.key">
           </mat-form-field>
         </div>
+        <div *ngIf="field.type === 'textArea' && field.kind === 'work'" [fxFlex]="field.fxFlex ? field.fxFlex : 50" class="form-field-container">
+          <div fxFlex="100" class="form-field-class">
+            <mat-label>
+              {{field.name}}
+            </mat-label>
+
+            <div id="editor{{i}}" class="editor-area" contenteditable  >{{fieldsForm.value[field.key]}}</div>
+          </div>
+        </div>
         <div *ngIf="field.type === 'checkbox' && field.kind === 'work' && fieldsForm?.controls[field.key]"
-             class="form-field-container" fxFlex="50">
+             class="form-field-container" [fxFlex]="field.fxFlex ? field.fxFlex : 50">
           <div fxFlex="100" class="form-field-class">
             <mat-slide-toggle [formControlName]="field.key" name="{{field.name}}"
             > {{field.name}}
             </mat-slide-toggle>
           </div>
         </div>
+
+        <div *ngIf="field.type === 'dateTime' && field.kind === 'work'" [fxFlex]="field.fxFlex ? field.fxFlex : 50" class="form-field-container">
+
+          <mat-form-field fxFlex="100" class="form-field-class">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="{{field.name}}" [formControlName]="field.key"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="false" [showSeconds]="false"
+                                     [stepHour]="1" [stepMinute]="1"
+                                     [touchUi]="true" [hideTime]="false">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+        </div>
+
       </ng-container>
     </div>
 

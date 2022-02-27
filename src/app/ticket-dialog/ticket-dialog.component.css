@@ -4,7 +4,22 @@
 }
 
 .form-field-container {
-  height: 40px;
+  min-height: 40px;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+editor {
+  margin-top: 5px;
+  width: 400px;
+}
+
+.editor-area {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  background-color: white;
+  background-color: -moz-field;
+  border: 1px solid darkgray;
+  margin-top: 5px;
+  padding: 2px 3px;
 }
