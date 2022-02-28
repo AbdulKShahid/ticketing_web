@@ -23,7 +23,7 @@ export interface TicketDialogResult {
 })
 export class TicketDialogComponent implements OnInit, AfterViewInit {
   fieldsForm: FormGroup;
-  private backupTicket: Partial<Ticket> = { ...this.data.ticket };
+  backupTicket: Partial<Ticket> = { ...this.data.ticket };
   fields: any = [];
   constructor(
     public dialogRef: MatDialogRef<TicketDialogComponent>,
@@ -99,14 +99,6 @@ export class TicketDialogComponent implements OnInit, AfterViewInit {
   submit() {
 
     this.valueChangeCheck();
-
-
-
-
-    console.log(document.getElementById("editor"));
-
-
-
     let res = JSON.parse(JSON.stringify(this.fieldsForm.value));
 /*    this.fields.forEach(field => {
       res[field.key] = '';

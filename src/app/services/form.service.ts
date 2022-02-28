@@ -195,7 +195,7 @@ export class FormService {
       {
         name: 'Recherche de panne commentaire',
         key: 'panneSearchCmt',
-        type: 'string',
+        type: 'textArea',
         kind: 'work',
         fxFlex: 100
       },
@@ -209,7 +209,7 @@ export class FormService {
       {
         name: 'Verification d\'equipments commentaire',
         key: 'equipmentVerificationCmt',
-        type: 'string',
+        type: 'textArea',
         kind: 'work',
         fxFlex: 100
       },
@@ -222,7 +222,7 @@ export class FormService {
       {
         name: 'Mise en securité commentaire',
         key: 'putInSecurityCmt',
-        type: 'string',
+        type: 'textArea',
         kind: 'work',
         fxFlex: 100
       },
@@ -235,7 +235,7 @@ export class FormService {
       {
         name: 'Reparation commentaire',
         key: 'reparationCmt',
-        type: 'string',
+        type: 'textAreas',
         kind: 'work',
         fxFlex: 100
       },

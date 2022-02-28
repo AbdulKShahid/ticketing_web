@@ -1,0 +1,9 @@
+<div fxLayout="column">
+  <h3>Images</h3>
+  <div *ngIf="images?.length" fxLayout="row wrap" class="full-width">
+    <div *ngFor="let image of images" class="img-display">
+      <img  class="img-display" src="{{image.url}}"/>
+    </div>
+  </div>
+
+</div>

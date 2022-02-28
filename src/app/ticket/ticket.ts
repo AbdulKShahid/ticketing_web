@@ -21,4 +21,5 @@ export interface Ticket {
   blackOut?: string;
   waterLeak?: string;
   doorBlock?: string;
+  images?: any;
 }

@@ -67,6 +67,7 @@ export class AppComponent {
   }
 
   editTicket(list: 'done' | 'todo' | 'inProgress' | 'tickets' , ticket: Ticket): void {
+    console.log(ticket);
     const dialogRef = this.dialog.open(TicketDialogComponent, {
       width: '80vw',
       height: '80vh',
